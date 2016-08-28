@@ -579,6 +579,8 @@
         }
         try {
           log.debug("[群组消息]", "[" + msg.from_group.name + "] " + msg.from_user.nick + ":" + msg.content + " " + msg.time);
+          this.msgCb(msg)
+
         } catch (undefined) {}
       } else if (msg_type === MsgType.Discuss) {
         msg.from_did = value.did;
@@ -603,6 +605,7 @@
         }
         try {
           log.debug("[讨论组消息]", "[" + msg.from_dgroup.name + "] " + msg.from_user.nick + ":" + msg.content + " " + msg.time);
+          this.msgCb(msg)
         } catch (undefined) {}
       } else if (msg_type === MsgType.Default) {
         msg.from_user = this.get_user(msg.from_uin);
@@ -611,6 +614,7 @@
         }
         try {
           log.debug("[好友消息]", msg.from_user.nick + ":" + msg.content + " " + msg.time);
+          this.msgCb(msg)
         } catch (undefined) {}
       } else if (msg_type === MsgType.Sess) {
         msg.from_gid = value.id;
@@ -673,6 +677,11 @@
         };
       })(this));
     };
+
+    QQBot.prototype.setMsgListener = function(callback){
+         this.msgCb = callback
+         log.info('success bind callback')
+    }
 
     return QQBot;
 

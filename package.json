@@ -1,12 +1,12 @@
 {
-  "name": "smartqq-bot",
+  "name": "hubot-smartqq",
   "version": "2.1.0",
   "description": "SmartQQ robot powered by node.js",
-  "main": "main.js",
+  "main": "src/hubot-adapter.js",
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "https://github.com/floatinghotpot/qqbot.git"
+    "url": "https://github.com/atomicmm/qqbot.git"
   },
   "keywords": [
     "qqbot",
@@ -27,11 +27,15 @@
     {
       "name": "Raymond Xie",
       "email": "rjfun.mobile@gmail.com"
+    },
+    {
+      "name": "Atomic",
+      "email": "atomicmm@gmail.com"
     }
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/floatinghotpot/floatinghotpot/issues"
+    "url": "https://github.com/atomicmm/qqbot/issues"
   },
   "dependencies": {
     "js-yaml": ">= 3.0.0",
@@ -40,8 +44,8 @@
     "underscore": "^1.8.3"
   },
   "engines": {
-    "node": ">= 0.10.x",
-    "npm": ">= 1.1.x"
+    "node": ">= 6.0.x",
+    "npm": ">= 3.8.x"
   },
   "devDependencies": {},
   "analyze": false,
