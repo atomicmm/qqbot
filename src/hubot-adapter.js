@@ -15,17 +15,15 @@ class SmartQQAdapter extends Adapter {
         super()
 
         this.robot = robot
-        this.robot.logger.info("SmartQQ starting...")
+        this.robot.logger.info("Hubot-smartqq starting...")
     }
 
     send(envelope, ...strings) {
-        this.robot.logger.info("hubot is sending " + strings)
+        this.robot.logger.info(`sending msg:${strings}`)
         console.log(envelope)
-
-        this.qqbot.get_user_uin('43925958', (err, uin)=> {
-            this.qqbot.send_message(uin, strings, (ret, e)=> {
-                console.log(ret)
-            })
+        const msg = this.robot.brain.get(envelope.message.id)
+        this.qqbot.reply_message(msg, strings, () => {
+            this.robot.brain.remove(envelope.message.id)
         })
     }
 
@@ -36,7 +34,6 @@ class SmartQQAdapter extends Adapter {
     run() {
         this.robot.logger.info("starting smartqq...")
 
-        var options, self, skip_login;
         const isneedlogin = process.env.HUBOT_QQ_SKIP_LOGIN === 'true';
 
         return this.getToken(isneedlogin)
@@ -49,7 +46,9 @@ class SmartQQAdapter extends Adapter {
                         this.emit("connected");
 
                         bot.setMsgListener(msg => {
-                            this.robot.logger.info(msg.from_uin + " : " + msg.content);
+                            this.robot.logger.info(`receive msg:[${msg.from_uin}:${msg.content}#${msg.uid}]`);
+
+                            this.robot.brain.set(msg.uid, msg)
                             const user = new User(msg.from_uin, {
                                 name: msg.from_uin
                             })

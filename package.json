@@ -1,6 +1,6 @@
 {
   "name": "hubot-smartqq",
-  "version": "2.1.0",
+  "version": "0.0.3",
   "description": "SmartQQ robot powered by node.js",
   "main": "src/hubot-adapter.js",
   "scripts": {},
@@ -47,7 +47,6 @@
     "node": ">= 6.0.x",
     "npm": ">= 3.8.x"
   },
-  "devDependencies": {},
   "analyze": false,
   "preferGlobal": "true",
   "bin": {
